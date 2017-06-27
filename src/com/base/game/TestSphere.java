@@ -13,6 +13,8 @@ public class TestSphere extends Game
 		
 		
 		
+		
+		
 		GameObject DirectionalLight_Object = new GameObject();
 		
 		DirectionalLight directionalLight = new DirectionalLight(new Vector3f(1,1,1), 2.0f);
