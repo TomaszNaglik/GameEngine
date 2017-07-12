@@ -162,6 +162,7 @@ public class Input
 		for(int i = 0; i < NUM_KEYCODES; i++)
 			m_lastKeys[i] = GetKey(i);
 		
+		
 		for(int i = 0; i < NUM_MOUSEBUTTONS; i++)
 			m_lastMouse[i] = GetMouse(i);
 	}

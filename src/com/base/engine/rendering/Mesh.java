@@ -35,13 +35,14 @@ public class Mesh
 	private static HashMap<String, MeshResource> s_loadedModels = new HashMap<String, MeshResource>();
 	private MeshResource m_resource;
 	private String       m_fileName;
-	
+		
 	
 	
 	public Mesh(String fileName)
 	{
 		this.m_fileName = fileName;
 		MeshResource oldResource = s_loadedModels.get(fileName);
+		
 
 		if(oldResource != null)
 		{
@@ -93,10 +94,7 @@ public class Mesh
 	
 	public void Draw()
 	{
-		int drawMode = GL_LINES;
-		if(Input.GetKeyDown(Input.KEY_Z))
-			drawMode = GL_POINTS;
-		
+				
 		glEnableVertexAttribArray(0);
 		glEnableVertexAttribArray(1);
 		glEnableVertexAttribArray(2);
@@ -109,7 +107,7 @@ public class Mesh
 		glVertexAttribPointer(3, 3, GL_FLOAT, false, Vertex.SIZE * 4, 32);
 		
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_resource.GetIbo());
-		glDrawElements(drawMode, m_resource.GetSize(), GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, m_resource.GetSize(), GL_UNSIGNED_INT, 0);
 		
 		glDisableVertexAttribArray(0);
 		glDisableVertexAttribArray(1);
@@ -119,7 +117,7 @@ public class Mesh
 	
 	private void CalcNormals(Vertex[] vertices, int[] indices)
 	{
-		for(int i = 0; i < indices.length; i += 3)
+		for(int i = 0; i < indices.length-3; i += 3)
 		{
 			int i0 = indices[i];
 			int i1 = indices[i + 1];
