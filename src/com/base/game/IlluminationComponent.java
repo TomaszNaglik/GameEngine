@@ -8,35 +8,29 @@ import com.base.engine.core.Vector3f;
 import com.base.engine.rendering.RenderingEngine;
 import com.base.engine.rendering.Shader;
 
-public class IlluminationComponent extends DirectionalLight
+public class IlluminationComponent extends GameComponent
 {
-	public float luminosity = 1.0f;
+	public float IntensityDelta = 0.0001f;;
+	public DirectionalLight DL;
 	
-		public IlluminationComponent(Vector3f color, float luminosity)
+		public IlluminationComponent(DirectionalLight dl)
 		{
-			super(color, luminosity);
-
+			this.DL = dl;
 		}
 
-		public Vector3f GetDirection()
-		{
-			return GetTransform().GetTransformedRot().GetForward();
-		}
-	
-	
 	@Override
 	public void Update(float delta)
 	{
-		this.SetIntensity(luminosity);
-		
+				
 	}
 	
 	@Override 
 	public void Input(float delta)
 	{
-		if(Input.GetKey(Input.KEY_1)) luminosity+= 0.001f;
-		if(Input.GetKey(Input.KEY_2)) luminosity-= 0.001f;
+		if(Input.GetKey(Input.KEY_1)) DL.SetIntensity(DL.GetIntensity()+IntensityDelta);
+		if(Input.GetKey(Input.KEY_2)) DL.SetIntensity(DL.GetIntensity()-IntensityDelta);
+		
+		if(DL.GetIntensity()>1) DL.SetIntensity(1.0f);
+		if(DL.GetIntensity()<0) DL.SetIntensity(0.0f);
 	}
-	
-	
 }

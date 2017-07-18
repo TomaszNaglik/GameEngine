@@ -35,6 +35,7 @@ public class GameObject
 		m_components = new ArrayList<GameComponent>();
 		m_transform = new Transform();
 		m_engine = null;
+		
 	}
 
 	public GameObject AddChild(GameObject child)
@@ -126,5 +127,11 @@ public class GameObject
 			for(GameObject child : m_children)
 				child.SetEngine(engine);
 		}
+	}
+	
+	public GameObject SetRotation(Quaternion rotation)
+	{
+		this.GetTransform().SetRot(rotation);
+		return this;
 	}
 }

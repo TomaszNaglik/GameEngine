@@ -117,7 +117,7 @@ public class Mesh
 	
 	private void CalcNormals(Vertex[] vertices, int[] indices)
 	{
-		for(int i = 0; i < indices.length-3; i += 3)
+		for(int i = 0; i <= indices.length-3; i += 3)
 		{
 			int i0 = indices[i];
 			int i1 = indices[i + 1];

@@ -94,10 +94,13 @@ public class CoreEngine
 				if(Window.IsCloseRequested() || Input.GetKeyDown(m_escape_int))
 					Stop();
 
+				
+				
 				m_game.Input((float) m_frameTime);
 				Input.Update();
-				
 				m_game.Update((float) m_frameTime);
+				
+				
 				
 				if(frameCounter >= 1.0)
 				{
